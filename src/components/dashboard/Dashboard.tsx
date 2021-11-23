@@ -1,9 +1,11 @@
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
+import { getPosts } from '../../store/actions';
 import { changeTitle } from '../../store/actions/appActions';
+import { PostSelectors } from '../../store/selectors';
 
 function DashboardContent() {
 
@@ -51,9 +53,18 @@ export default function Dashboard() {
 
     const dispatch: Dispatch<any> = useDispatch();
 
+    // const { selectPosts } = PostSelectors;
+
+    // const posts = useSelector(selectPosts);
+
     useEffect(() => {
         dispatch(changeTitle('Dashboard'));
+        dispatch(getPosts());
     }, [dispatch]);
-    
+
+    // useEffect(() => {
+        
+    // }, [posts]);
+
   return <DashboardContent />;
 }
