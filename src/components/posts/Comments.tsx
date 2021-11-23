@@ -16,7 +16,7 @@ export const Comments = ({ expanded, comments }: CommentsProps) => {
                 <WriteComment />
                 <Divider />
                 <CardContent>
-                    {comments && comments.map((comment: IComment) => <Comment comment={comment} />)}
+                    {(comments && comments.length > 0) && comments.map((comment: IComment) => <Comment key={comment.id} comment={comment} />)}
                 </CardContent>
             </Collapse>
         </>

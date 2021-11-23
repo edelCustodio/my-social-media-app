@@ -15,7 +15,13 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Comments } from './Comments';
-import { IPost } from '../../models';
+import { IComment, IPost } from '../../models';
+import { SocialState } from '../../store/types';
+import { useDispatch, useSelector } from 'react-redux';
+import { CommentSelectors } from '../../store/selectors';
+import { useEffect } from 'react';
+import { Dispatch } from 'redux';
+import { getComments } from '../../store/actions/commentActions';
 
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -40,8 +46,24 @@ export interface IPostProps {
 export const Post = ({ post }: IPostProps) => {
 
     const [expanded, setExpanded] = React.useState(false);
+    const dispatch: Dispatch<any> = useDispatch();
+    const { selectCommentsByPostId } = CommentSelectors;
+
+
+    const comments = useSelector((state: SocialState) => {
+        const cts = selectCommentsByPostId(state, post.id);
+        console.log(cts);
+        return cts;
+    });
+
+    useEffect(() => {
+        // if (comments.length > 0) {
+        //     dispatch(getComments(post.id));
+        // }
+    }, [comments]);
 
     const handleExpandClick = () => {
+        dispatch(getComments(post.id));
         setExpanded(!expanded);
     };
 
@@ -89,7 +111,7 @@ export const Post = ({ post }: IPostProps) => {
                     <ExpandMoreIcon />
                 </ExpandMore>
             </CardActions>
-            <Comments expanded={expanded} comments={post.comments} />
+            <Comments expanded={expanded} comments={comments} />
             </Card>
         </>
     );

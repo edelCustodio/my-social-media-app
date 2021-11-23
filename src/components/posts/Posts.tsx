@@ -27,7 +27,7 @@ export const Posts = () => {
                 justifyContent="center"
                 alignItems="center">
                     <Grid item>
-                        {posts && posts.map((post: IPost) => <Paper elevation={3} style={{ marginTop: 10, width: '700px' }}>
+                        {posts && posts.map((post: IPost) => <Paper key={post.id} elevation={3} style={{ marginTop: 10, width: '700px' }}>
                                 <Post post={post} />
                             </Paper>) }
                     </Grid>
