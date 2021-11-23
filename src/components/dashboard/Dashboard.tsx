@@ -1,5 +1,9 @@
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Dispatch } from 'redux';
+import { changeTitle } from '../../store/actions/appActions';
 
 function DashboardContent() {
 
@@ -44,5 +48,12 @@ function DashboardContent() {
 }
 
 export default function Dashboard() {
+
+    const dispatch: Dispatch<any> = useDispatch();
+
+    useEffect(() => {
+        dispatch(changeTitle('Dashboard'));
+    }, [dispatch]);
+    
   return <DashboardContent />;
 }

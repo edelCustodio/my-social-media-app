@@ -1,6 +1,8 @@
 
 
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { changeTitle } from "../../store/actions/appActions";
 
 
 export interface IUserListProps {
@@ -12,6 +14,8 @@ export const UserList = () => {
 
     const [counter, setCounter] = useState(0);
 
+    const dispatch: Dispatch<any> = useDispatch();
+
     
     
 
@@ -21,6 +25,10 @@ export const UserList = () => {
             console.log('Unmount');
         }
     }, [counter]);
+
+    useEffect(() => {
+        dispatch(changeTitle('Users'));
+    }, [dispatch]);
 
     const increment = () => {
         setCounter(counter + 1);
