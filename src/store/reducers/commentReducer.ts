@@ -25,6 +25,11 @@ export const commentReducer = (state: CommentState = CommentStateInit, action: C
             return { ...state };
         }
 
+        case types.ADD_COMMENT: {
+            const comment = action.payload as IComment;
+            return { ...state, comments: [...state.comments, comment] };
+        }
+
         default:
             return { ...state };
     }

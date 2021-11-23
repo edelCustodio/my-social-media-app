@@ -7,6 +7,7 @@ export const ADD_POSTS = 'ADD_POSTS';
 
 // Coments
 export const ADD_COMMENTS = 'ADD_COMMENTS';
+export const ADD_COMMENT = 'ADD_COMMENT';
 
 
 // App

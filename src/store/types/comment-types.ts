@@ -9,7 +9,7 @@ export const CommentStateInit = {
 }
 
 
-export type CommentStateType = IComment[];
+export type CommentStateType = IComment[] | IComment;
 
 export type CommentAction = { type: string, payload: CommentStateType };
 

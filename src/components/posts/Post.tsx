@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CommentSelectors } from '../../store/selectors';
 import { useEffect } from 'react';
 import { Dispatch } from 'redux';
-import { getComments } from '../../store/actions/commentActions';
+import { getComments, saveComment } from '../../store/actions/commentActions';
 
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -50,11 +50,7 @@ export const Post = ({ post }: IPostProps) => {
     const { selectCommentsByPostId } = CommentSelectors;
 
 
-    const comments = useSelector((state: SocialState) => {
-        const cts = selectCommentsByPostId(state, post.id);
-        console.log(cts);
-        return cts;
-    });
+    const comments = useSelector((state: SocialState) => selectCommentsByPostId(state, post.id));
 
     useEffect(() => {
 
@@ -64,9 +60,20 @@ export const Post = ({ post }: IPostProps) => {
         if (comments.length === 0) {
             dispatch(getComments(post.id));
         }
-        
+
         setExpanded(!expanded);
     };
+
+
+    const writeCommentHandler = (text: string) => {
+        const comment = {
+            postId: post.id,
+            body: text,
+            email: 'me@email.com',
+            name: 'fulanito'
+        } as IComment;
+        dispatch(saveComment(comment));
+    }
 
     return (
         <>
@@ -112,7 +119,7 @@ export const Post = ({ post }: IPostProps) => {
                     <ExpandMoreIcon />
                 </ExpandMore>
             </CardActions>
-            <Comments expanded={expanded} comments={comments} />
+            <Comments expanded={expanded} comments={comments} writeCommentHandler={writeCommentHandler} />
             </Card>
         </>
     );

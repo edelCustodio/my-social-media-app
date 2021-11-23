@@ -5,15 +5,16 @@ import { WriteComment } from "./WriteComment";
 
 export interface CommentsProps {
     expanded: boolean;
-    comments: IComment[]
+    comments: IComment[];
+    writeCommentHandler: Function;
 }
 
-export const Comments = ({ expanded, comments }: CommentsProps) => {
+export const Comments = ({ expanded, comments, writeCommentHandler }: CommentsProps) => {
 
     return (
         <>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <WriteComment />
+                <WriteComment writeCommentHandler={writeCommentHandler} />
                 <Divider />
                 <CardContent>
                     {(comments && comments.length > 0) && comments.map((comment: IComment) => <Comment key={comment.id} comment={comment} />)}

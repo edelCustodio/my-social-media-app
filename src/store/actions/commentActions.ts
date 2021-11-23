@@ -34,8 +34,38 @@ export const getComments = (postId: number = 0) => {
     }
 }
 
+export const saveComment = (comment: IComment) => {
+    return async (dispatch: any) => {
+
+        const request = async () => {
+            const response = await httpClient.post<IComment>(`/comments`, comment);
+
+            if(!response) {
+                throw new Error(`Not able to save the comment`);
+            }
+
+            return response;
+        }
+
+        try {
+            const response = await request();
+            const comment = response.data;
+
+            // dispatch to update store
+            dispatch(addComment(comment));
+
+        } catch (e: any) {
+
+        }
+    }
+}
+
 // Actions
 
 export const addComments: ActionCreator<CommentAction> = (comments: IComment[]) => {
     return { type:  types.ADD_COMMENTS, payload: comments } as CommentAction;
+}
+
+export const addComment: ActionCreator<CommentAction> = (comment: IComment) => {
+    return { type:  types.ADD_COMMENT, payload: comment } as CommentAction;
 }
