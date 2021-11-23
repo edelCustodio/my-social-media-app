@@ -15,7 +15,7 @@ export const Comment = ({ comment }: ICommentProps) => {
 
     return (
         <>
-            <Paper style={{ padding: "40px 20px", marginTop: 100 }}>
+            <Paper style={{ padding: 5, marginTop: 5 }}>
                 <Grid container wrap="nowrap" spacing={2}>
                     <Grid item>
                         <Avatar alt="Remy Sharp" src={imgLink} />

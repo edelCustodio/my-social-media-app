@@ -57,13 +57,14 @@ export const Post = ({ post }: IPostProps) => {
     });
 
     useEffect(() => {
-        // if (comments.length > 0) {
-        //     dispatch(getComments(post.id));
-        // }
+
     }, [comments]);
 
     const handleExpandClick = () => {
-        dispatch(getComments(post.id));
+        if (comments.length === 0) {
+            dispatch(getComments(post.id));
+        }
+        
         setExpanded(!expanded);
     };
 
