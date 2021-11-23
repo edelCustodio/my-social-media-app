@@ -5,11 +5,15 @@ import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import routes from './routes';
 import { useRoutes } from 'react-router-dom';
 
-const mdTheme = createTheme({
+/**
+ * {
   palette: {
     mode: 'dark',
   },
-});
+}
+ */
+
+const mdTheme = createTheme();
 
 function App() {
   const routing = useRoutes(routes);
