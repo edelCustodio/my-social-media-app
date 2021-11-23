@@ -1,4 +1,4 @@
-import { IUser } from "../../users/interfaces";
+import { IUser } from "../../components/users/interfaces";
 
 
 export interface UserState {

@@ -1,20 +1,24 @@
-import React, { Dispatch, useEffect } from 'react';
+
 import logo from './logo.svg';
 import './App.css';
-import { UserList } from './users/UsersList';
-import { useDispatch } from 'react-redux';
-import { getUsers } from './store/actions';
+import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import routes from './routes';
+import { useRoutes } from 'react-router-dom';
+
+const mdTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 function App() {
-
-  const dispatch: Dispatch<any> = useDispatch();
-
-  useEffect(() => {
-    dispatch(getUsers());
-  }, [dispatch]);
+  const routing = useRoutes(routes);
 
   return (
-    <UserList list={[1, 2, 3] as number[]}></UserList>
+    <ThemeProvider theme={mdTheme}>
+      {routing}
+    </ThemeProvider>
+
   );
 }
 

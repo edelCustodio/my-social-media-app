@@ -1,4 +1,4 @@
-import { IUser } from "../../users/interfaces";
+import { IUser } from "../../components/users/interfaces";
 import { HttpClient } from "../../utils/HttpClient"
 import { UserAction } from "../types";
 import * as types from '../types/actionTypes';

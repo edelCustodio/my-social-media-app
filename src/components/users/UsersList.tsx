@@ -8,19 +8,19 @@ export interface IUserListProps {
 }
 
 
-export const UserList = ({ list }: IUserListProps) => {
+export const UserList = () => {
 
     const [counter, setCounter] = useState(0);
 
     
-    const l = list;
+    
 
     useEffect(() => {
         console.log(`mount`);
         return () => {
             console.log('Unmount');
         }
-    }, []);
+    }, [counter]);
 
     const increment = () => {
         setCounter(counter + 1);
